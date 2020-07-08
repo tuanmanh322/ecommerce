@@ -26,6 +26,9 @@ namespace API
 
           // Run any migrations upon application start up.
           await context.Database.MigrateAsync();
+
+          // Initial seeding of database.
+          await StoreContextSeed.SeedAsync(context, loggerFactory);
         }
         catch (Exception ex)
         {
