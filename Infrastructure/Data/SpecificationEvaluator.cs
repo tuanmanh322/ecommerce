@@ -8,7 +8,7 @@ namespace Infrastructure.Data
   // This class should be constrain only with BaseEntity classes.
   public class SpecificationEvaluator<TEntity> where TEntity : BaseEntity
   {
-    public static IQueryable<TEntity> GetQueryable(IQueryable<TEntity> inputQuery,
+    public static IQueryable<TEntity> GetQuery(IQueryable<TEntity> inputQuery,
                                                   ISpecification<TEntity> spec)
     {
       var query = inputQuery;
