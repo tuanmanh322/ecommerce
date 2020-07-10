@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Dtos;
 using Core.Entities;
@@ -26,13 +27,22 @@ namespace API.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetProducts()
+    public async Task<ActionResult<List<ProductToReturnDto>>> GetProducts()
     {
       var spec = new ProductsWithTypesAndBrandsSpecification();
 
       var products = await _productRepo.ListAsync(spec);
 
-      return Ok(products);
+      return products.Select(product => new ProductToReturnDto()
+      {
+        Id = product.Id,
+        Name = product.Name,
+        Description = product.Description,
+        Price = product.Price,
+        PictureUrl = product.PictureUrl,
+        ProductBrand = product.ProductBrand.Name,
+        ProductType = product.ProductType.Name
+      }).ToList();
     }
 
     [HttpGet("{id}")]
