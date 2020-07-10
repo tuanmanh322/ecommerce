@@ -6,6 +6,11 @@ namespace Core.Specifications
 {
   public class BaseSpecification<T> : ISpecification<T>
   {
+    public BaseSpecification()
+    {
+
+    }
+
     // The Specification Pattern will fix certain shortfalls
     // of the Generic Repository pattern.
     public BaseSpecification(Expression<Func<T, bool>> criteria)
