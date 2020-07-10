@@ -19,7 +19,13 @@ namespace API.Helpers
                             string destMember,
                             ResolutionContext context)
     {
-      throw new System.NotImplementedException();
+      if (!string.IsNullOrEmpty(source.PictureUrl))
+      {
+        // Gives full path to image.
+        return _config["ApiUrl"] + source.PictureUrl;
+      }
+
+      return null;
     }
   }
 }
