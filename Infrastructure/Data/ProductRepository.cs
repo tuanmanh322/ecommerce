@@ -17,6 +17,8 @@ namespace Infrastructure.Data
 
     public async Task<Product> GetProductByIdAsync(int id)
     {
+      // The Specification Pattern (ISpecification, BaseSpecification, SpecificationEvaluator) is
+      // all done to give the ability to use Include statements.
       return await _context.Products
                             .Include(p => p.ProductBrand)
                             .Include(p => p.ProductType)
