@@ -56,18 +56,7 @@ namespace API.Controllers
 
       var product = await _productRepo.GetEntityWithSpec(spec);
 
-
-
-      return new ProductToReturnDto()
-      {
-        Id = product.Id,
-        Name = product.Name,
-        Description = product.Description,
-        Price = product.Price,
-        PictureUrl = product.PictureUrl,
-        ProductBrand = product.ProductBrand.Name,
-        ProductType = product.ProductType.Name
-      };
+      return _mapper.Map<Product, ProductToReturnDto>(product);
     }
 
     [HttpGet("brands")]
