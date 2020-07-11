@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-  public class ErrorController : BaseApiController
+  public class ErrorResponseController : BaseApiController
   {
     private readonly StoreContext _context;
 
-    public ErrorController(StoreContext context)
+    public ErrorResponseController(StoreContext context)
     {
       _context = context;
     }
