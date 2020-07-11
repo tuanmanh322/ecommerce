@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace API
 {
@@ -64,6 +65,15 @@ namespace API
           return new BadRequestObjectResult(errorResponse);
         };
       });
+
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo()
+        {
+          Title = "eCommerce API",
+          Version = "v1"
+        });
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,6 +94,12 @@ namespace API
       app.UseStaticFiles();
 
       app.UseAuthorization();
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "eCommerce API v1");
+      });
 
       app.UseEndpoints(endpoints =>
       {
