@@ -50,6 +50,10 @@ namespace API
         app.UseDeveloperExceptionPage();
       }
 
+      // Requests that aren't exceptions will be re-directed to 
+      // our errors controller with the status code passed in.
+      app.UseStatusCodePagesWithReExecute("/errors/{0}");
+
       app.UseHttpsRedirection();
 
       app.UseRouting();
