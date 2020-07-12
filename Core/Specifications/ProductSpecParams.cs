@@ -8,6 +8,8 @@ namespace Core.Specifications
     // free to choose any size 1 <= n <= 50.
     private int _pageSize = 6;
 
+    private string _search;
+
     public int PageSize
     {
       get => _pageSize;
@@ -22,5 +24,13 @@ namespace Core.Specifications
     public int? TypeId { get; set; }
 
     public string Sort { get; set; }
+
+    // Force user searches to be lowercase.
+    public string Search
+    {
+      get => _search;
+      set => _search = value.ToLower();
+    }
+
   }
 }
