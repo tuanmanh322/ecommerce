@@ -25,7 +25,7 @@ namespace Infrastructure.Data
 
       // NOTE: certain databases cannot support the decimal type. 
       // A manual conversion must be done to a supported type.
-      // if (Database.ProviderName == "Microsoft.EntityFramework.Sqlite")
+      // if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
       // {
       //   foreach (var entityType in modelBuilder.Model.GetEntityTypes())
       //   {
