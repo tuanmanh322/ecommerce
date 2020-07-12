@@ -7,9 +7,9 @@ namespace Core.Specifications
 {
   public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
   {
-    public ProductsWithTypesAndBrandsSpecification(string sort, int? brandId, int? typeId)
-        : base(x => (!brandId.HasValue || x.ProductBrandId == brandId)
-                    && (!typeId.HasValue || x.ProductTypeId == typeId))
+    public ProductsWithTypesAndBrandsSpecification(ProductSpecParams productParams)
+        : base(x => (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId)
+                    && (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId))
     {
       AddInclude(x => x.ProductBrand);
       AddInclude(x => x.ProductType);
@@ -17,9 +17,9 @@ namespace Core.Specifications
 
       // Check how data wants to be sorted then 
       // add the appropriate spec.
-      if (!string.IsNullOrEmpty(sort))
+      if (!string.IsNullOrEmpty(productParams.Sort))
       {
-        switch (sort)
+        switch (productParams.Sort)
         {
           case "priceAsc":
             AddOrderBy(p => p.Price);
