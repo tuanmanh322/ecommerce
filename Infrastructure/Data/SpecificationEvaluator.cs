@@ -28,6 +28,13 @@ namespace Infrastructure.Data
         query = query.OrderByDescending(spec.OrderByDescending);
       }
 
+      if (spec.IsPagingEnabled)
+      {
+        // The ordering of paging operators is crucial.
+        // Paging must come AFTER filtering and sorting has occurred.
+        query = query.Skip(spec.Skip).Take(spec.Take);
+      }
+
       // Take all Include statements and aggregates them so that ToList, First, 
       // or other ending LINQ clause can be called upon them.
       // E.g. _context.Products.Include(p => p.ProductBrand)Include(p => p.ProductType).....
