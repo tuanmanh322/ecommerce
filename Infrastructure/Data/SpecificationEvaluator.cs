@@ -18,6 +18,16 @@ namespace Infrastructure.Data
         query = query.Where(spec.Criteria);
       }
 
+      if (spec.OrderBy != null)
+      {
+        query = query.OrderBy(spec.OrderBy);
+      }
+
+      if (spec.OrderByDescending != null)
+      {
+        query = query.OrderByDescending(spec.OrderByDescending);
+      }
+
       // Take all Include statements and aggregates them so that ToList, First, 
       // or other ending LINQ clause can be called upon them.
       // E.g. _context.Products.Include(p => p.ProductBrand)Include(p => p.ProductType).....
