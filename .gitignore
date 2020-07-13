@@ -476,3 +476,6 @@ yarn-error.log
 
 .notes.md
 baseline.json
+
+*.crt
+*.key
