@@ -18,10 +18,10 @@ export class ShopService {
   }
 
   getBrands() {
-    return this.http.get<IBrand>(this.baseUrl + 'products/brands');
+    return this.http.get<IBrand[]>(this.baseUrl + 'products/brands');
   }
 
   getTypes() {
-    return this.http.get<IType>(this.baseUrl + 'products/types');
+    return this.http.get<IType[]>(this.baseUrl + 'products/types');
   }
 }
