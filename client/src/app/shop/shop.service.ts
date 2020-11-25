@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { IPagination } from '../shared/models/pagination';
 import { IBrand } from '../shared/models/brand';
 import { IType } from '../shared/models/productType';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,15 @@ export class ShopService {
       params = params.append('typeId', typeId.toString());
     }
 
-    return this.http.get<IPagination>(this.baseUrl + 'products', {observe: 'resposne', params});
+    return this.http.get<IPagination>(this.baseUrl + 'products', {observe: 'response', params})
+                    .pipe(
+                      // The pipe call can take in multiple RXJS operators
+                      // such as delay(), map(), etc.
+                      map(response => {
+                        // The body will be IPagination object.
+                        return response.body;
+                      })
+                    );
   }
 
   getBrands() {
