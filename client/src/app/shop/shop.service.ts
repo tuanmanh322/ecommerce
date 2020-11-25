@@ -17,12 +17,12 @@ export class ShopService {
   getProducts(brandId?: number, typeId?: number) {
     let params = new HttpParams();
 
-    if (brandId) {
-      params = params.append('brandId', brandId.toString());
-    }
-
     if (typeId) {
       params = params.append('typeId', typeId.toString());
+    }
+
+    if (brandId) {
+      params = params.append('brandId', brandId.toString());
     }
 
     return this.http.get<IPagination>(this.baseUrl + 'products', {observe: 'response', params})
